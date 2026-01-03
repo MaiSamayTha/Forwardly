@@ -1,6 +1,6 @@
 .summary-stats {
     display: grid;
-    grid-template-columns: 200px 1fr 150px;
+    grid-template-columns: 240px 1fr 150px;
     gap: 1rem;
     background-color: var(--bg-card-lighter);
     padding: 2rem;
@@ -37,6 +37,7 @@
 
 .stat-row {
     display: contents;
+    white-space: nowrap;
 }
 
 .stat-row .label {
