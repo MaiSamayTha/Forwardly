@@ -1,0 +1,67 @@
+:root {
+  --bg-dark: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-lighter: #f4f4f5;
+  --text-primary: #000000;
+  --text-secondary: #525252;
+
+  /* Map all accents to black/grayscale for Light Mode */
+  --accent-teal: #000000;
+  --accent-blue: #000000;
+  --accent-purple: #404040;
+  --accent-orange: #737373;
+  --accent-red: #000000;
+  --success-green: #000000;
+
+  --chart-line: #000000;
+  --border-color: #e5e5e5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+#root {
+  width: 100%;
+  max-width: 1200px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: var(--text-primary);
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

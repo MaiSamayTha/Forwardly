@@ -1,0 +1,53 @@
+.dashboard-container {
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.dashboard-header {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  /* Let clicks pass through except for buttons */
+}
+
+.dashboard-header button {
+  pointer-events: auto;
+}
+
+.download-btn {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  /* Softer shadow for light mode */
+}
+
+.close-btn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  color: var(--text-secondary);
+  padding: 0.5rem;
+  background: var(--bg-card-lighter);
+  border-radius: 4px;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
