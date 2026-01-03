@@ -146,7 +146,6 @@ const HabitTable = ({ habits, setHabits }) => {
 
                 {/* Footer Row (Histogram) */}
                 <div className="grid-cell footer-desc-col">
-                    In the lines above, in a short but sufficiently descriptive way...
                 </div>
                 <div className="grid-cell"></div> {/* Goal col empty */}
                 {dailyTotals.map((total, i) => (

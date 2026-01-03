@@ -1,15 +1,17 @@
 import React from 'react';
+import '@fontsource/playfair-display';
 import { LineChart, Line, ResponsiveContainer, CartesianGrid, LabelList } from 'recharts';
 import { Heart } from 'lucide-react';
 import './SummaryStats.css';
 
-const SummaryStats = ({ dailyTotals }) => {
+const SummaryStats = ({ dailyTotals, successRate }) => {
     // Convert dailyTotals array to chart data format
     const data = dailyTotals.map(val => ({ val }));
 
     return (
         <div className="summary-stats">
             <div className="stats-left">
+                <div className="month-title">JANUARY</div>
                 <div className="stat-row">
                     <span className="label">Start Date:</span>
                     <span className="value">July 1, 2023</span>
@@ -45,7 +47,7 @@ const SummaryStats = ({ dailyTotals }) => {
 
             <div className="stats-right">
                 <div className="success-label">SUCCESS RATE</div>
-                <div className="success-percentage">84%</div>
+                <div className="success-percentage">{successRate}%</div>
                 <div className="hearts">
                     <Heart fill="#000000" color="#000000" size={24} />
                     <Heart fill="#000000" color="#000000" size={24} />

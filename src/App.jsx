@@ -27,12 +27,18 @@ function App() {
     return habits.filter(h => h.checks.includes(dayNumber)).length;
   });
 
+  // Calculate success rate: total checks / (total possible checks)
+  const totalChecks = dailyTotals.reduce((sum, val) => sum + val, 0);
+  const totalPossible = habits.length * dailyTotals.length;
+  const successRate = totalPossible ? Math.round((totalChecks / totalPossible) * 100) : 0;
+
+
   return (
     <div className="dashboard-container">
       {/* Header removed as per request */}
 
       <main className="dashboard-content">
-        <SummaryStats dailyTotals={dailyTotals} />
+        <SummaryStats dailyTotals={dailyTotals} successRate={successRate} />
         <HabitTable habits={habits} setHabits={setHabits} />
         <FooterStats />
       </main>
