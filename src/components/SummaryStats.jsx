@@ -4,14 +4,14 @@ import { LineChart, Line, ResponsiveContainer, CartesianGrid, LabelList } from '
 import { Heart } from 'lucide-react';
 import './SummaryStats.css';
 
-const SummaryStats = ({ dailyTotals, successRate }) => {
+const SummaryStats = ({ dailyTotals, successRate, month }) => {
     // Convert dailyTotals array to chart data format
     const data = dailyTotals.map(val => ({ val }));
 
     return (
         <div className="summary-stats">
             <div className="stats-left">
-                <div className="month-title">JANUARY</div>
+                <div className="month-title">{month || 'JANUARY'}</div>
                 <div className="stat-row">
                     <span className="label">Start Date:</span>
                     <span className="value">July 1, 2023</span>
@@ -49,8 +49,8 @@ const SummaryStats = ({ dailyTotals, successRate }) => {
                 <div className="success-label">SUCCESS RATE</div>
                 <div className="success-percentage">{successRate}%</div>
                 <div className="hearts">
-                    <Heart fill="#000000" color="#000000" size={24} />
-                    <Heart fill="#000000" color="#000000" size={24} />
+                    <Heart fill="var(--accent-red)" color="var(--accent-red)" size={24} />
+                    <Heart fill="var(--accent-red)" color="var(--accent-red)" size={24} />
                 </div>
                 <div className="good-job">GOOD JOB</div>
             </div>

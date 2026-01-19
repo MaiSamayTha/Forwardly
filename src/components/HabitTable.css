@@ -1,32 +1,71 @@
-.habit-table-container {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1rem;
-    color: var(--text-primary);
+.habit-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
 }
 
-.habit-grid {
+.habit-table-wrapper {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* Left Panel */
+.habit-main-panel {
+    flex: 1;
+    overflow-x: auto;
+    /* Allow horizontal scroll if needed */
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.habit-progress-panel {
+    width: 160px;
+    flex-shrink: 0;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Grids */
+.habit-grid-main {
     display: grid;
-    grid-template-columns: 200px 60px repeat(31, 1fr) 120px;
+    /* Habit | Goal | Days (dynamic) */
+    /* Grid columns set inline dynamically in JSX */
+    gap: 4px;
+    align-items: center;
+    min-width: 1100px;
+}
+
+.habit-grid-progress {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 4px;
     align-items: center;
 }
 
+/* Header Cells */
 .grid-header-cell {
-    font-weight: 700;
-    font-size: 0.8rem;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     text-align: center;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
     color: var(--text-secondary);
 }
 
 .habit-col {
     text-align: left;
-    padding-left: 0.5rem;
+    padding-left: 0.75rem;
 }
-
-
 
 .day-col {
     display: flex;
@@ -41,41 +80,47 @@
 
 .day-letter {
     color: var(--text-secondary);
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 0.65rem;
+    margin-top: 2px;
 }
 
+/* Cells */
 .grid-cell {
-    height: 32px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .habit-name {
-    justify-content: flex-start;
-    padding-left: 0.5rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    justify-content: space-between;
+    padding: 0 0.25rem 0 0.75rem;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 4px;
+    border-radius: 6px;
     border: 1px solid transparent;
+    position: relative;
 }
 
 .habit-name:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--accent-blue);
-    transform: translateX(4px);
+    background-color: var(--bg-hover);
+}
+
+.habit-name-content {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
 }
 
 .habit-name.editing {
     background-color: var(--bg-card);
     box-shadow: 0 0 0 2px var(--accent-blue);
     padding: 0;
-    transform: scale(1.02);
     z-index: 10;
 }
 
@@ -88,138 +133,166 @@
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
-    padding-left: 0.5rem;
+    padding-left: 0.75rem;
     outline: none;
 }
 
-.goal-val {
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+.delete-habit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
     border-radius: 4px;
-    border: 1px solid transparent;
+    color: var(--text-tertiary);
+    opacity: 0;
+    transition: all 0.2s;
+}
+
+.habit-name:hover .delete-habit-btn {
+    opacity: 1;
+}
+
+.delete-habit-btn:hover {
+    color: var(--accent-red);
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.add-habit-row {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.add-habit-row:hover {
+    color: var(--accent-blue);
+}
+
+.add-habit-row:hover svg {
+    stroke: var(--accent-blue);
+}
+
+.goal-val {
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 4px;
     min-width: 40px;
     text-align: center;
 }
 
 .goal-val:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    transform: scale(1.05);
+    background-color: var(--bg-hover);
+    color: var(--text-primary);
 }
 
 .goal-val.editing {
     background-color: var(--bg-card);
     box-shadow: 0 0 0 2px var(--accent-blue);
-    transform: scale(1.02);
     z-index: 10;
 }
 
-.goal-val input {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: transparent;
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    text-align: center;
-    outline: none;
-}
-
+/* Day Checkboxes */
 .day-check {
-    border: 1px dashed var(--text-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     cursor: pointer;
-    width: 100%;
-    height: 100%;
-    transition: all 0.2s;
+    width: 24px;
+    height: 24px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: var(--bg-check);
+}
+
+.day-check:hover {
+    border-color: var(--text-secondary);
+    transform: scale(1.1);
 }
 
 .day-check.checked {
-    border-style: solid;
-    color: #ffffff;
-    /* White check on Dark background */
+    border-style: none;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Colors */
 .day-check.checked.teal {
     background-color: var(--accent-teal);
-    border-color: var(--accent-teal);
 }
 
 .day-check.checked.blue {
     background-color: var(--accent-blue);
-    border-color: var(--accent-blue);
 }
 
 .day-check.checked.purple {
     background-color: var(--accent-purple);
-    border-color: var(--accent-purple);
 }
 
 .day-check.checked.orange {
     background-color: var(--accent-orange);
-    border-color: var(--accent-orange);
 }
 
 .day-check.checked.red {
     background-color: var(--accent-red);
-    border-color: var(--accent-red);
 }
 
 .day-check.checked.green {
     background-color: var(--success-green);
-    border-color: var(--success-green);
+}
+
+.check-mark {
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
 }
 
 .check-mark::after {
-    content: 'X';
-    font-size: 0.7rem;
-    font-weight: 800;
+    content: '';
 }
 
+/* Progress Bar (Right Panel) */
 .progress-val {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
     padding: 0 0.5rem;
-    gap: 2px;
+    gap: 4px;
 }
 
 .pct {
     font-size: 0.7rem;
+    font-weight: 600;
     align-self: flex-end;
+    color: var(--text-secondary);
 }
 
 .progress-bar-bg {
     width: 100%;
-    height: 6px;
-    background-color: var(--bg-card-lighter);
-    border-radius: 3px;
+    height: 4px;
+    background-color: var(--bg-hover);
+    border-radius: 2px;
     overflow: hidden;
 }
 
 .progress-bar-fill {
     height: 100%;
-    border-radius: 3px;
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Footer Histogram */
+/* Footer Histogram (Left Panel) */
 .footer-desc-col {
     grid-column: 1 / 2;
     font-size: 0.7rem;
-    color: var(--text-secondary);
-    line-height: 1.2;
+    color: var(--text-tertiary);
+    line-height: 1.4;
     white-space: normal;
     text-align: left;
-    padding: 0.5rem;
-    height: auto;
-    align-self: flex-start;
+    padding: 0.5rem 0.75rem;
 }
 
 .day-total-col {
@@ -231,32 +304,39 @@
 }
 
 .histogram-bar {
-    width: 6px;
-    background-color: var(--success-green);
+    width: 4px;
+    background-color: var(--border-color);
     border-radius: 2px 2px 0 0;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+    transition: height 0.3s ease;
 }
 
 .total-val {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--text-secondary);
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
 }
 
+/* Total Stats (Right Panel) */
 .total-completed-col {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 60px;
+    align-items: center;
+    /* Center in right panel */
 }
 
 .big-total {
     font-size: 1.5rem;
     font-weight: 800;
+    color: var(--text-primary);
 }
 
 .completed-label {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 600;
-    color: var(--text-secondary);
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-top: 2px;
 }

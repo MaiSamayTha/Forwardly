@@ -1,0 +1,117 @@
+.app-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg-dark);
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    height: calc(100vh - 2rem);
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: var(--shadow-md);
+}
+
+.sidebar-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 1rem;
+}
+
+.sidebar-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background-color: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    background-color: var(--bg-card-lighter);
+    /* Or a designated active color */
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.nav-section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 1.5rem 0 0.5rem 0.5rem;
+}
+
+.scrollable-months {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+/* Update Dashboard Container to fit in flex */
+.dashboard-container {
+    flex: 1;
+    width: auto;
+    /* Ensure card styles from App.css apply */
+    margin: 0;
+    overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        transform: translateX(-100%);
+        z-index: 100;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+}
